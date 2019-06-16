@@ -18,6 +18,7 @@ class CreateRequestsTable extends Migration
             $table->text("description");
             $table->string("location");
             $table->string("state");
+            $table->string("title")->nullable();
             $table->integer("worker_id")->unsigned();
             $table->foreign("worker_id")->references('id')->on("workers")->onDelete('cascade');
             $table->integer("user_id")->unsigned();

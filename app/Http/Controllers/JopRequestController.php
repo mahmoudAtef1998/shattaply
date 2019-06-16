@@ -55,6 +55,8 @@ class JopRequestController extends Controller
 
         $the_request=new JopRequest();
         $the_request->description=$request->input('description');
+        $the_request->title=$request->input('title');
+
         $the_request->location=$request->input('location');
         $the_request->state=('state');
         $the_request->worker_id=$request->input('worker_id');
@@ -90,8 +92,10 @@ class JopRequestController extends Controller
         $id1=$request->input('worker_id');
         $joprequest = DB::table('jop_requests')
             ->join('users','jop_requests.user_id','=','users.id')
-            ->where('worker_id','=',$id1 )
+            ->where('worker_id','=', $id1 )
             ->where('state','=','avaliable')
+//            ->select('jop_requests.description','jop_requests.location   ')
+//                ->select(['jop_requests.description','jop_requests.location','jop_requests.title','users.name','users.phone_number','users.last_name'])
             ->get();
         return response()->json([
             "message"=>"successfull",
@@ -104,6 +108,7 @@ class JopRequestController extends Controller
         $id1=$request->input('user_id');
         $joprequest = DB::table('jop_requests')
             ->join('workers','jop_requests.worker_id','=','workers.id')
+            ->where('state','=','avaliable')
             ->where('user_id','=',$id1 )->get();
         return response()->json([
             "message"=>"successfull",

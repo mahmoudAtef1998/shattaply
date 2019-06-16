@@ -46,7 +46,7 @@ Route::delete('/deleteDepartment/{id}',"DepartmentController@destroy");
 
 
 //Evaluation routes
-Route::post('/storeEvaluation',"EvaluationController@store");
+Route::post('/F',"EvaluationController@store");
 Route::get('/showEvaluations',"EvaluationController@index");
 Route::get('/showEvaluation',"EvaluationController@show");
 Route::put('/updateEvaluation/{id}',"EvaluationController@update");
